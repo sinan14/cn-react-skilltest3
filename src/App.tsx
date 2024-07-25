@@ -1,14 +1,14 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "./components/Header";
-import AuthContextProvider from "./components/context-providers/AuthContextProvider";
-import Home from "./pages/Home";
-import SignIn from "./pages/SignIn";
-import Signup from "./pages/Signup";
-import Cart from "./pages/Cart";
-import Myorders from "./pages/Myorders";
-import CartContextProvider from "./components/context-providers/CartContextProvider";
-import { NotFound } from "./components/NotFound";
-import PrivateRoute from "./components/ProtectedRoute";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
+import Signup from './pages/Signup';
+import Cart from './pages/Cart';
+import Myorders from './pages/Myorders';
+// import AuthContextProvider from "./components/context-providers/AuthContextProvider";
+// import CartContextProvider from "./components/context-providers/CartContextProvider";
+import { NotFound } from './components/NotFound';
+import PrivateRoute from './components/ProtectedRoute';
 
 export default function App() {
   /**
@@ -18,7 +18,7 @@ export default function App() {
    */
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       errorElement: <NotFound />,
       element: <Header />,
       children: [
@@ -27,15 +27,15 @@ export default function App() {
           element: <Home />,
         },
         {
-          path: "/signup",
+          path: '/signup',
           element: <Signup />,
         },
         {
-          path: "/signin",
+          path: '/signin',
           element: <SignIn />,
         },
         {
-          path: "/cart",
+          path: '/cart',
           element: (
             <PrivateRoute>
               <Cart />
@@ -43,7 +43,7 @@ export default function App() {
           ),
         },
         {
-          path: "/orders",
+          path: '/orders',
           element: (
             <PrivateRoute>
               <Myorders />
@@ -54,10 +54,8 @@ export default function App() {
     },
   ]);
   return (
-    <AuthContextProvider>
-      <CartContextProvider>
-        <RouterProvider router={router} />
-      </CartContextProvider>
-    </AuthContextProvider>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }

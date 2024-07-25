@@ -12,7 +12,7 @@ import logoutImg from '../assets/logout.png';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import Loader from './Loader';
-import { useCartContext } from '../hooks/useCartContext';
+// import { useCartContext } from '../hooks/useCartContext';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import {
   disableLoader,
@@ -20,6 +20,7 @@ import {
   loginFail,
   loginSuccess,
 } from '../store/authSlice';
+import { setItems, setOrder } from '../store/cartSlice';
 
 /**
  * common header for whole application
@@ -33,7 +34,7 @@ export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
   // const { loggedIn, setLoggedIn, loading, setLoading, setUid } =
   //   useAuthContext();
-  const { setCartItems, setOrders } = useCartContext();
+  // const { setCartItems, setOrders } = useCartContext();
   const navigate = useNavigate();
 
   /**
@@ -70,8 +71,8 @@ export default function Header() {
     }
     // setLoading(false);
     dispatch(disableLoader());
-    setCartItems([]);
-    setOrders([]);
+    dispatch(setItems([]));
+    dispatch(setOrder([]));
   };
 
   return (

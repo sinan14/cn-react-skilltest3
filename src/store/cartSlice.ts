@@ -15,11 +15,6 @@ import { db } from './../firebaseInit';
 import { getDocs, query, where, doc } from 'firebase/firestore';
 import { CartItem as CartItemType } from '../types/CartItem';
 
-// Define a type for the slice state
-// interface CounterState {
-//   value: number
-// }
-
 // Define the initial state using that type
 const initialState = {
   allProducts: [] as ProductItem[],
@@ -102,18 +97,24 @@ export const onAddToCart = createAsyncThunk<
       await updateDoc(doc(db, 'Cart', cartItem.cartId), {
         quantity,
       });
-      cartItem.quantity = quantity;
-      updatedItems = [
-        ...cartItems.slice(0, index),
-        cartItem,
-        ...cartItems.slice(index + 1),
-      ];
+      updatedItems = cartItems.map((item, i) => {
+        if (i === index) {
+          return {
+            ...cartItem,
+            quantity,
+          };
+        }
+        return item;
+      });
     }
+    console.log('updadte state is ', updatedItems);
+
     thunkApi.dispatch(setItems(updatedItems));
     successAlert(
       index === -1 ? 'Successfully added' : 'Increasesd product count'
     );
   } catch (error) {
+    console.log('error happened in', error);
   } finally {
     thunkApi.dispatch(hideLoader());
   }
@@ -169,12 +170,10 @@ export const decreaseCartItemQuantity = createAsyncThunk<
       await updateDoc(doc(db, 'Cart', cartItem.cartId), {
         quantity: quantity - 1,
       });
-      cartItem.quantity = quantity - 1;
-      updatedItems = [
-        ...cartItems.slice(0, index),
-        cartItem,
-        ...cartItems.slice(index + 1),
-      ];
+      updatedItems = cartItems.map((item, i) => {
+        if (i === index) return { ...cartItem, quantity: quantity - 1 };
+        return item;
+      });
     }
     thunkApi.dispatch(setItems(updatedItems));
     //setLoading(false);
@@ -212,17 +211,18 @@ export const onCheckout = createAsyncThunk<void, string, AsyncThunkConfig>(
         date: new Date(),
         uid,
       };
-      const doc = await addDoc(collection(db, 'Orders'), order);
+      const orderDoc = await addDoc(collection(db, 'Orders'), order);
       const temp = [...cartItems];
-      thunkApi.dispatch(setOrder([...orders, { ...order, orderId: doc.id }]));
-      thunkApi.dispatch(setItems([]));
+      thunkApi.dispatch(
+        setOrder([...orders, { ...order, orderId: orderDoc.id }])
+      );
       successAlert('Your orders added successfully');
-      // clearCart();
+      // clearing Cart();
 
-      for (const { cartId } of temp) {
-        //@ts-expect-error
-        await deleteDoc(doc(db, 'Cart', cartId));
+      for (const cartItem of temp) {
+        await deleteDoc(doc(db, 'Cart', cartItem.cartId));
       }
+      thunkApi.dispatch(setItems([]));
     } catch (error) {
       console.log('error in remove oneItem ==>', error);
       //setLoading(false);
