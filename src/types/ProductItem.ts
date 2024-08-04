@@ -3,5 +3,6 @@ export interface ProductItem {
   price: number;
   id: number;
   image: string;
-  category:string;
+  category?:string;
+  description?:string
 }

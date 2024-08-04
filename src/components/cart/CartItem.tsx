@@ -1,11 +1,4 @@
-// import { useCartContext } from '../../hooks/useCartContext';
 import { CartItem as Product } from '../../types/CartItem';
-import { useAppDispatch } from '../../store/hooks';
-import {
-  decreaseCartItemQuantity,
-  onAddToCart,
-  removeFromCart,
-} from '../../store/cartSlice';
 type PropsType = {
   product: Product;
 };
@@ -13,8 +6,6 @@ type PropsType = {
  * each single cart Product Item
  */
 export default function CartItem({ product }: PropsType) {
-  const dispatch = useAppDispatch();
-  // const { onAddCart, removeOneItem, removeItem } = useCartContext();
   return (
     <div className='rounded-3xl border-2 border-gray-200 p-4 lg:p-8 grid grid-cols-12 mb-8 max-lg:max-w-lg max-lg:mx-auto gap-y-4 '>
       <div className='col-span-12 lg:col-span-2 img box'>
@@ -30,7 +21,7 @@ export default function CartItem({ product }: PropsType) {
             {product.title}
           </h5>
           <button
-            onClick={() => dispatch(removeFromCart(product))}
+            onClick={() => {}}
             className='rounded-full group flex items-center justify-center focus-within:outline-red-500'
           >
             <svg
@@ -69,7 +60,7 @@ export default function CartItem({ product }: PropsType) {
         <div className='flex justify-between items-center'>
           <div className='flex items-center gap-4'>
             <button
-              onClick={() => dispatch(decreaseCartItemQuantity(product))}
+              onClick={() => {}}
               className='group rounded-[50px] border border-gray-200 shadow-sm shadow-transparent p-2.5 flex items-center justify-center bg-white transition-all duration-500 hover:shadow-gray-200 hover:bg-gray-50 hover:border-gray-300 focus-within:outline-gray-300'
             >
               <svg
@@ -97,7 +88,7 @@ export default function CartItem({ product }: PropsType) {
             />
             <button
               className='group rounded-[50px] border border-gray-200 shadow-sm shadow-transparent p-2.5 flex items-center justify-center bg-white transition-all duration-500 hover:shadow-gray-200 hover:bg-gray-50 hover:border-gray-300 focus-within:outline-gray-300'
-              onClick={() => dispatch(onAddToCart(product))}
+              onClick={() => {}}
             >
               <svg
                 className='stroke-gray-900 transition-all duration-500 group-hover:stroke-black'
