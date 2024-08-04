@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useAppSelector } from "../../store/hooks";
-// import { useAuthContext } from "../../hooks/useAuthContext";
 import editIcon from "../../assets/editIcon.png";
 import deleteIcon from "../../assets/deleteIcon.png";
 type propsType = {

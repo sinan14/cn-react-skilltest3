@@ -9,7 +9,6 @@ import { ProductItem } from "../types/ProductItem";
 import type { RootState } from "./store";
 
 import { successAlert } from "../utils/Alert";
-// import { CartItem as CartItemType } from "../types/CartItem";
 
 // Define the initial state using that type
 const initialState = {

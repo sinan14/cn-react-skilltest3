@@ -48,6 +48,9 @@ export default function ProductForm() {
   };
   return (
     <div className="w-full md:w-96 md:max-w-full mx-auto">
+      <h2 className="text-2xl font-bold text-center mb-1">
+        {editItem?.id ? "Edit Product" : "Add Product"}
+      </h2>
       <div className="p-6 border border-gray-300 sm:rounded-md">
         <form onSubmit={onSubmit}>
           <label className="block mb-6">
@@ -158,7 +161,7 @@ export default function ProductForm() {
             hover:bg-indigo-800
           "
             >
-              Add
+              {editItem.id ? "Update" : "Add"}
             </button>
           </div>
           <div></div>

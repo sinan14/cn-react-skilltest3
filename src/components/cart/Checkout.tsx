@@ -3,7 +3,6 @@ type PropType = {
   total: number;
 };
 export default function Checkout(props: PropType) {
-  // const { checkOut } = useCartContext();
   return (
     <>
       <div className="flex flex-col md:flex-row items-center md:items-center justify-between lg:px-6 pb-6 border-b border-gray-200 max-lg:max-w-lg max-lg:mx-auto">

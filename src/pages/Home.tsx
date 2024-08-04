@@ -70,6 +70,7 @@ export default function Home() {
         contentLabel="Minimal Modal Example"
         onRequestClose={() => dispatch(hideAddProductForm())}
         style={customStyles}
+        ariaHideApp={false}
       >
         <div className="realtive">
           <button
