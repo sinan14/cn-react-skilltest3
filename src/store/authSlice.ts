@@ -4,8 +4,6 @@ import type { RootState } from './store';
 
 // Define the initial state using that type
 const initialState = {
-  loggedIn: false,
-  uid: '',
   loading: false,
 };
 

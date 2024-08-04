@@ -77,12 +77,11 @@ export const onAddToCart = createAsyncThunk<
     thunkApi.dispatch(showLoader());
     const {
       cart: { cartItems },
-      auth: { uid },
     } = thunkApi.getState() as RootState;
     const index = cartItems.findIndex((item) => item.id == product.id);
     let updatedItems = [] as CartItem[];
     if (index == -1) {
-      const item = { ...product, quantity: 1, uid: uid };
+      const item = { ...product, quantity: 1 };
       const url =
         "https://my-json-server.typicode.com/sinan14/fake-server/cart";
       const resp = await fetch(url, {
