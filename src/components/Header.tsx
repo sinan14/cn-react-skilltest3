@@ -16,7 +16,7 @@ import { showAddProductForm } from "../store/cartSlice";
 
 export default function Header() {
   // The `state` arg is correctly typed as `RootState` already
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { loading } = useAppSelector((state) => state.auth);
   const { loader, cartItems } = useAppSelector((state) => state.cart);
   const [showMenu, setShowMenu] = useState(false);
@@ -33,7 +33,7 @@ export default function Header() {
           to="/"
           className="flex items-center h-10 px-10 bg-gradient-to-r from-gray-900 via-gray-600 to-gray-500 rounded-tl-full rounded-br-full font-bold uppercase italic text-white hover:opacity-90"
         >
-          Busy Buy
+          eCommerce
         </Link>
         <nav className="hidden sm:flex justify-between items-center gap-4 font-semibold">
           <Link
@@ -44,7 +44,10 @@ export default function Header() {
             <span className="font-semibold text-xl">Home</span>
           </Link>
 
-          <div onClick={() => dispatch(showAddProductForm())} className="flex items-center">
+          <div
+            onClick={() => dispatch(showAddProductForm())}
+            className="flex items-center"
+          >
             <img src={addIcon} className="w-8 h-8" />
             <span className="font-semibold text-xl">Add a product</span>
           </div>
@@ -74,6 +77,13 @@ export default function Header() {
               <Link to="/" className="hover:text-gray-500">
                 Home
               </Link>
+              <div
+                onClick={() => dispatch(showAddProductForm())}
+                className="flex items-center"
+              >
+                <img src={addIcon} className="w-8 h-8" />
+                <span className="font-semibold text-xl">Add a product</span>
+              </div>
 
               <Link to="/cart" className="hover:text-gray-500">
                 Cart
@@ -86,5 +96,3 @@ export default function Header() {
     </div>
   );
 }
-
-
