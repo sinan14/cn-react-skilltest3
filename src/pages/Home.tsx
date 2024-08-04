@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import ProductCard from "../components/product/ProductCard";
-import ProductForm from "../components/ProductForm";
+import ProductForm from "../components/product/ProductForm";
 import {
   deleteProduct,
   hideAddProductForm,

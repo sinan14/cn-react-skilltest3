@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react";
-import { errorAlert } from "../utils/Alert";
-import { ProductItem } from "../types/ProductItem";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { addProduct, editProduct } from "../store/cartSlice";
+import { errorAlert } from "../../utils/Alert";
+import { ProductItem } from "../../types/ProductItem";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { addProduct, editProduct } from "../../store/cartSlice";
 
 export default function ProductForm() {
   const dispatch = useAppDispatch();
@@ -71,7 +71,7 @@ export default function ProductForm() {
             focus:ring-indigo-200
             focus:ring-opacity-50
             border-solid
-            border-black border-2
+            border-gray-300 border-[0.3px]
           "
             />
           </label>
@@ -95,7 +95,7 @@ export default function ProductForm() {
             focus:ring-indigo-200
             focus:ring-opacity-50
             border-solid
-            border-black border-2
+            border-gray-300 border-[0.3px]
           "
               required
             />
@@ -118,7 +118,7 @@ export default function ProductForm() {
             focus:ring-indigo-200
             focus:ring-opacity-50
             border-solid
-            border-black border-2
+            border-gray-300 border-[0.3px]
           "
               required
             />
@@ -140,7 +140,7 @@ export default function ProductForm() {
             focus:ring-indigo-200
             focus:ring-opacity-50
             border-solid
-            border-black border-2
+            border-gray-300 border-[0.3px]
           "
               rows={3}
               required
